@@ -9,12 +9,19 @@ class OneTask extends Component {
             <div className='one-task-container flex'>
                 <div className='one-task-left flex'>
                     <div>
-                        <input type='checkbox' onChange={() => checkboxHandle(task.id, task.isCompleted, task.value)} checked={task.isCompleted} className='one-task-checkbox' />
+                        <input
+                            type='checkbox'
+                            onChange={() => checkboxHandle(task.id)}
+                            checked={task.isCompleted}
+                            className='one-task-checkbox' />
                     </div>
                     {
                         isEdit && task.id === editId ?
                             <div>
-                                <input type='text' placeholder={task.title} onKeyDown={(e) => changeTitleHandle(e, task.id, task.title)} className='one-task-inputbar' />
+                                <input
+                                    type='text'
+                                    placeholder={task.title}
+                                    onKeyDown={(e) => changeTitleHandle(e, task.id, task.title)} className='one-task-inputbar' />
                             </div> :
                             <p className={`one-task-title ${task.isCompleted ? 'checked-task' : ''}`}>{task.title}</p>
                     }
@@ -22,10 +29,16 @@ class OneTask extends Component {
                 <div className='one-task-btn-wrapper flex'>
                     {
                         isEdit && task.id === editId ?
-                            <button className='close-btn btns one-task-btns' onClick={() => closeHandle(task.id)}>Close</button> :
-                            <button className='edit-btn btns one-task-btns' onClick={(e) => editHandle(e, task.id, task.title)}>Edit</button>
+                            <button
+                                className='close-btn btns one-task-btns'
+                                onClick={() => closeHandle(task.id)}>Close</button> :
+                            <button
+                                className='edit-btn btns one-task-btns'
+                                onClick={(e) => editHandle(task.id)}>Edit</button>
                     }
-                    <button className='delete-btn btns one-task-btns' onClick={() => deleteHandle(task.id, task.title, task.isCompleted)}>Delete</button>
+                    <button
+                        className='delete-btn btns one-task-btns'
+                        onClick={() => deleteHandle(task.id, task.title, task.isCompleted)}>Delete</button>
                 </div>
             </div>
         )

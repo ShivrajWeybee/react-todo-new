@@ -1,5 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Quicksand&display=swap');
 
+:root {
+  --background: #F9F9F9;
+  --title-color: #AAAAAA;
+  --primary-color: #1e6eee;
+  --secondry-color: #7aa6ec;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -20,20 +27,18 @@ body {
 .App {
   border: 1px solid black;
   padding: 10px;
-  background-color: #F9F9F9;
+  background-color: var(--background);
 }
 
 .todo-header {
-  /* border: 1px solid yellow; */
-  color: #AAAAAA;
+  color: var(--title-color);
   text-align: center;
   text-transform: uppercase;
 }
 
 .date-time-container {
-  color: #1e6eee;
+  color: var(--primary-color);
   margin: 20px 0;
-  /* border: 1px solid blue; */
   text-align: center;
 }
 
@@ -41,9 +46,8 @@ body {
   font-size: 18px;
 }
 
-.hero {
-  /* border: 1px solid red; */
-  width: 70%;
+.form {
+  width: 60%;
   margin: 5px auto;
   padding: 10px 0;
 }
@@ -68,16 +72,16 @@ body {
   background-color: transparent;
   padding: 10px 7px;
   border-radius: 5px;
-  border: 2px solid #7aa6ec;
+  border: 2px solid var(--secondry-color);
   transition: 0.20s ease-in-out;
 }
 
 .add-search-btns:hover {
-  background-color: #7aa6ec;
+  background-color: var(--secondry-color);
 }
 
 .add-search-btn-focus {
-  background-color: #7aa6ec;
+  background-color: var(--secondry-color);
   color: white;
 }
 
@@ -95,18 +99,18 @@ body {
 
 .tab-container .tab-container-btn-focus {
   font-weight: 700;
-  color: #1e6eee;
+  color: var(--primary-color);
 }
 
 .tab-action-sort .tab-btn:hover {
   font-weight: 700;
-  color: #1e6eee;
+  color: var(--primary-color);
 }
 
 .tab-action-sort {
   margin: 40px 0 20px 0;
   justify-content: space-around;
-  border-bottom: 2px solid #1e6eee;
+  border-bottom: 2px solid var(--primary-color);
   padding-bottom: 5px;
 }
 

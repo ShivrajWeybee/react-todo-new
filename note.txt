@@ -18,3 +18,60 @@
 
 <i className='fa-solid fa-plus'></i>
 <i className='search-task fa-solid fa-magnifying-glass'></i>
+
+// if (e.target.name === 'all') {
+        //     this.setState({
+        //         isCompleteTab: false,
+        //         isActive: false,
+        //     })
+        // }
+        // else if (e.target.name === 'active') {
+        //     this.setState({
+        //         isActive: true,
+        //         isCompleteTab: false,
+        //     })
+        // }
+        // else if (e.target.name === 'completed') {
+        //     this.setState({
+        //         isCompleteTab: true,
+        //         isActive: false,
+        //     })
+        // }
+
+
+---------------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------------------
+
+-->> Changes :
+
+- Remove refs : ❌
+- Don't write everything in one component : ❌
+    (single responsibility principle)
+- Use appropriate class and component names : ✅
+- Format code : ✅
+
+---------------------------------------------------------
+
+- Pass data from child to parent : ✅
+- Arrow vs simple function for events : 
+- Pure function in js : given same input always return same output. : ✅
+- Props drilling : ✅
+- Portals : ✅
+
+
+---------------------------------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------
+
+- addHandle : ✅
+- searchhandle : ✅
+- editHandle : can be written in OneTask
+- deleteHandle : 
+- changeTitleHandle : 
+- closeHandle : can be written in OneTask
+- checkBoxHandle : 
+- tabHandle : 
+- actionHandle
+- sortFunction
+- sortHandle
+- handleSearch
+- handleAdd

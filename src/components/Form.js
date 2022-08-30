@@ -1,11 +1,10 @@
 import React, { Component } from 'react'
 import AllTask from './AllTask';
-import FormContext, { FormConsumer } from './FormContext';
 import Action from './Action';
 import Tab from './Tab';
 import Sort from './Sort';
 
-class Hero extends Component {
+class Form extends Component {
 
     constructor(props) {
         super(props)
@@ -18,14 +17,12 @@ class Hero extends Component {
             editId: 0,
             tasks: [],
             temp: [],
-            isEdit: false,
             completed: [],
+            isEdit: false,
             isCompleteTab: false,
             isActive: false,
         }
     }
-
-    static contextType = FormContext;
 
     addHandle = (e) => {
         this.setState(({
@@ -94,7 +91,7 @@ class Hero extends Component {
         })
     }
 
-    editHandle = (e, Oneid, OneValue) => {
+    editHandle = (Oneid) => {
         this.setState({
             isEdit: !this.state.isEdit,
             editId: Oneid,
@@ -111,7 +108,7 @@ class Hero extends Component {
                 }
                 return task;
             }),
-            isEdit: !prevState.isEdit,
+            isEdit: false,
         }));
     }
 
@@ -121,7 +118,7 @@ class Hero extends Component {
         })
     }
 
-    checkboxHandle = (id, isCompleted, value) => {
+    checkboxHandle = (id) => {
         this.setState(prevState => ({
             tasks: prevState.tasks.map(task => {
                 if (task.id === id) {
@@ -129,7 +126,6 @@ class Hero extends Component {
                 }
                 return task;
             }),
-
         }), () => (this.setState(
             () => ({
                 completed: this.state.tasks.filter(task => task.isCompleted === true)
@@ -138,26 +134,6 @@ class Hero extends Component {
     }
 
     tabHandle = (e) => {
-        // if (e.target.name === 'all') {
-        //     this.setState({
-        //         isCompleteTab: false,
-        //         isActive: false,
-        //     })
-        // }
-        // else if (e.target.name === 'active') {
-        //     this.setState({
-        //         isActive: true,
-        //         isCompleteTab: false,
-        //     })
-        // }
-        // else if (e.target.name === 'completed') {
-        //     this.setState({
-        //         isCompleteTab: true,
-        //         isActive: false,
-        //     })
-        // }
-
-
         if (e.target.name === 'all') {
             if (this.state.isSearch && this.inputRef.current.value === "") {
                 this.setState(prevState => ({
@@ -203,7 +179,7 @@ class Hero extends Component {
     }
 
     actionHandle = (e) => {
-        if (e.target.value === 'selAll') {
+        if (e.target.value === 'selectAll') {
             if (this.state.isCompleteTab) {
                 this.setState(prevState => ({
                     completed: prevState.completed.map(task => {
@@ -234,7 +210,7 @@ class Hero extends Component {
                     })
                 )))
             }
-        } else if (e.target.value === 'unSelAll') {
+        } else if (e.target.value === 'unselectAll') {
             if (this.state.isCompleteTab) {
                 this.setState(prevState => ({
                     tasks: [...prevState.tasks, prevState.tasks.map(task => {
@@ -265,7 +241,7 @@ class Hero extends Component {
                     })
                 )))
             }
-        } else if (e.target.value === 'delSel') {
+        } else if (e.target.value === 'deleteSelected') {
             if (this.state.isCompleteTab) {
                 this.setState(prevState => ({
                     tasks: prevState.tasks.filter(task => task.isCompleted === false)
@@ -406,45 +382,70 @@ class Hero extends Component {
     }
 
     handleSearch = (e) => {
-        this.inputRef.current.focus();
+        // this.inputRef.current.focus();
         this.setState({
             isSearch: true,
         })
     }
 
     handleAdd = (e) => {
-        this.inputRef.current.focus();
+        // this.inputRef.current.focus();
         this.setState({
             isSearch: false,
         })
     }
 
     render() {
-        const { tasks, completed, isCompleteTab, isActive, temp, isSearch } = this.state;
+        const { tasks, completed, isCompleteTab, isActive, temp, isSearch, isEdit, title, editId } = this.state;
         let passedArr;
         if (isCompleteTab) passedArr = completed.length > 0 ? completed.slice() : [];
         else if (isActive && !isCompleteTab) passedArr = tasks.filter(task => task.isCompleted !== true)
         else passedArr = tasks.length > 0 ? tasks.slice() : [];
 
         return (
-            <div className='hero'>
+            <div className='form'>
                 <div className='add-search-input flex'>
-                    <input onKeyUp={this.state.isSearch ? this.searchHandle : this.addHandle} type='text' placeholder={this.state.isSearch ? 'seach task...' : 'add task...'} title={this.state.title} ref={this.inputRef} className='input-bar'/>
-                    <button onClick={this.handleAdd} className={`btns add-search-btns ${!this.state.isSearch ? 'add-search-btn-focus' : ''}`}>Add</button>
-                    <button onClick={this.handleSearch} className={`btns add-search-btns ${this.state.isSearch ? 'add-search-btn-focus' : ''}`}>Search</button>
+                    <input
+                        onKeyUp={isSearch ? this.searchHandle : this.addHandle}
+                        type='text' placeholder={isSearch ? 'seach task...' : 'add task...'}
+                        title={title}
+                        ref={this.inputRef}
+                        className='input-bar'
+                        autoFocus={isSearch ? isSearch : true} />
+                    <button
+                        onClick={this.handleAdd}
+                        className={`btns add-search-btns ${!isSearch ? 'add-search-btn-focus' : ''}`}>Add</button>
+                    <button
+                        onClick={this.handleSearch}
+                        className={`btns add-search-btns ${isSearch ? 'add-search-btn-focus' : ''}`}>Search</button>
                 </div>
                 <div className='tab-action-sort flex'>
-                    <Tab tabHandle={this.tabHandle} isActive={isActive} isCompleteTab={isCompleteTab}/>
+                    <Tab
+                        tabHandle={this.tabHandle}
+                        isActive={isActive}
+                        isCompleteTab={isCompleteTab} />
+
                     <Action actionHandle={this.actionHandle} />
+
                     <Sort sortingHandle={this.sortingHandle} />
                 </div>
 
                 {tasks.length ?
-                    <AllTask isEdit={this.state.isEdit} tasks={isSearch ? temp : passedArr} completed={this.state.completed} deleteHandle={this.deleteHandle} editHandle={this.editHandle} checkboxHandle={this.checkboxHandle} editId={this.state.editId} closeHandle={this.closeHandle} ref={this.secInputRef} changeTitleHandle={this.changeTitleHandle} />
+                    <AllTask
+                        isEdit={isEdit}
+                        tasks={isSearch ? temp : passedArr}
+                        completed={completed}
+                        deleteHandle={this.deleteHandle}
+                        editHandle={this.editHandle}
+                        checkboxHandle={this.checkboxHandle}
+                        editId={editId}
+                        closeHandle={this.closeHandle}
+                        ref={this.secInputRef}
+                        changeTitleHandle={this.changeTitleHandle} />
                     : ''}
             </div>
         )
     }
 }
 
-export default Hero
+export default Form

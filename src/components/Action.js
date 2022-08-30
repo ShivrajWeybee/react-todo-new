@@ -7,9 +7,9 @@ class Action extends Component {
       <div className='action-container'>
         <select className='action-dropdown dropdown btns' onChange={(e) => actionHandle(e)}>
           <option value='action'>Action</option>
-          <option value='selAll'>Select All</option>
-          <option value='unSelAll'>Unselect All</option>
-          <option value='delSel'>Delete Selected</option>
+          <option value='selectAll'>Select All</option>
+          <option value='unselectAll'>Unselect All</option>
+          <option value='deleteSelected'>Delete Selected</option>
         </select>
       </div>
     )
