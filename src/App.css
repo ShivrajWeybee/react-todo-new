@@ -1,0 +1,171 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Quicksand', sans-serif;
+  margin: 5px;
+}
+
+.flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.App {
+  border: 1px solid black;
+  padding: 10px;
+  background-color: #F9F9F9;
+}
+
+.todo-header {
+  /* border: 1px solid yellow; */
+  color: #AAAAAA;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.date-time-container {
+  color: #1e6eee;
+  margin: 20px 0;
+  /* border: 1px solid blue; */
+  text-align: center;
+}
+
+.date-time-bottom span {
+  font-size: 18px;
+}
+
+.hero {
+  /* border: 1px solid red; */
+  width: 70%;
+  margin: 5px auto;
+  padding: 10px 0;
+}
+
+.btns {
+  cursor: pointer;
+}
+
+.add-search-input input {
+  width: 80%;
+  padding: 10px;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 15px;
+  border-radius: 5px;
+  border: 1px solid black;
+  outline: none;
+}
+
+.add-search-btns {
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 700;
+  background-color: transparent;
+  padding: 10px 7px;
+  border-radius: 5px;
+  border: 2px solid #7aa6ec;
+  transition: 0.20s ease-in-out;
+}
+
+.add-search-btns:hover {
+  background-color: #7aa6ec;
+}
+
+.add-search-btn-focus {
+  background-color: #7aa6ec;
+  color: white;
+}
+
+.tab-container {
+  gap: 20px;
+}
+
+.tab-container .tab-btn {
+  background-color: transparent;
+  border: none;
+  font-size: 15px;
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 400;
+}
+
+.tab-container .tab-container-btn-focus {
+  font-weight: 700;
+  color: #1e6eee;
+}
+
+.tab-action-sort .tab-btn:hover {
+  font-weight: 700;
+  color: #1e6eee;
+}
+
+.tab-action-sort {
+  margin: 40px 0 20px 0;
+  justify-content: space-around;
+  border-bottom: 2px solid #1e6eee;
+  padding-bottom: 5px;
+}
+
+.dropdown {
+  background-color: none;
+  border: none;
+  font-size: 15px;
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 400;
+}
+
+.one-task-container {
+  border-bottom: 1px solid black;
+  margin: 10px 0;
+  padding: 10px 0;
+}
+
+.one-task-left {
+  gap: 10px;
+  font-size: 18px;
+}
+
+.one-task-btn-wrapper {
+  gap: 10px;
+}
+
+.one-task-btn-wrapper .one-task-btns {
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 700;
+  font-size: 12px;
+  padding: 5px;
+  background-color: transparent;
+  border: none;
+  border-radius: 3px;
+  transition: .20s ease-in-out;
+}
+
+.one-task-btn-wrapper .edit-btn {
+  border: 1px solid green;
+}
+.one-task-btn-wrapper .edit-btn:hover {
+  color: green;
+}
+
+.one-task-btn-wrapper .delete-btn {
+  border: 1px solid red;
+}
+.one-task-btn-wrapper .delete-btn:hover {
+  color: red;
+}
+
+.one-task-btn-wrapper .close-btn {
+  border: 1px solid grey;
+  color: grey;
+}
+.one-task-btn-wrapper .close-btn:hover {
+  color: black;
+}
+
+.checked-task {
+  text-decoration: line-through;
+}
